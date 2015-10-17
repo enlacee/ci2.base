@@ -1,0 +1,27 @@
+{
+  "name": "ci2.base",
+  "homepage": "https://github.com/enlacee/ci2.base",
+  "authors": [
+    "Anibal C <detops.tk@gmail.com>"
+  ],
+  "description": "marco base",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/lib/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0",
+    "respond": "respondJs#~1.4.2",
+    "datatables": "~1.10.9",
+    "formvalidation.io": "git@github.com:formvalidation/formvalidation.io.git#9658bda37983507d80fddd1774b52e3958b3548f",
+    "tinymce": "~4.2.6"
+  }
+}

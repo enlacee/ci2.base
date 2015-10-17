@@ -1,0 +1,5 @@
+## no follow
+/system
+/node_modules
+/assets/lib/*
+!/assets/lib/empty.txt
