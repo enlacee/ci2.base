@@ -9,12 +9,6 @@
 <?php $this->load->view("layouts/admin/footer.php"); ?>
 
 <?php $this->load->view("layouts/admin/footer_lib.php"); ?>
-<script>
 
-	$(function(){
-		alert( <?php echo $info; ?> );
-	});
-
-</script>
 <?php $this->load->view("layouts/admin/closed_footer.php"); ?>
 
