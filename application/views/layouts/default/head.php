@@ -29,8 +29,8 @@
 
 <link rel="stylesheet" type="text/css" href="assets/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="assets/css/font.css">
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<!--<link rel="stylesheet" type="text/css" href="assets/css/font.css">-->
+<!--<link rel="stylesheet" type="text/css" href="assets/css/style.css">-->
 <script type="text/javascript" src="assets/lib/respond/dest/respond.min.js"></script>
 
 <!--Add CSS (Layout)-->

@@ -21,7 +21,8 @@
     "font-awesome": "~4.4.0",
     "respond": "respondJs#~1.4.2",
     "datatables": "~1.10.9",
-    "formvalidation.io": "git@github.com:formvalidation/formvalidation.io.git#9658bda37983507d80fddd1774b52e3958b3548f",
+    "formvalidation.io": "git@github.com:formvalidation/formvalidation.git#master",
+    
     "tinymce": "~4.2.6"
   }
 }
