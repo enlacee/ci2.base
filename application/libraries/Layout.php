@@ -16,7 +16,7 @@ class Layout
 	/**
 	 * @var string Nombre del layout actual
 	 */
-	public $layout		= '';
+	public $layout		= 'default';
 
 	/**
 	 * Archivos JS para insertar en el layout
@@ -33,20 +33,20 @@ class Layout
 	 * Variables para mejorar el SEO del sitio
 	 * @var sting
 	 */	
-	public $title = 'Titulo_web';	
-	public $keywords = 'keywords';	
-	public $descripcion = 'descripcion';
-	public $social_site_name = 'social_site_name';
-	public $social_title = 'social_title';
-	public $social_resumen = 'social_resumen';
-	public $social_descripcion = 'social_descripcion';
+	public $title       				= 'Titulo_web';	
+	public $keywords    				= 'keywords';	
+	public $descripcion 				= 'descripcion';
+	public $social_site_name 		= 'social_site_name';
+	public $social_title 				= 'social_title';
+	public $social_resumen 			= 'social_resumen';
+	public $social_descripcion 	= 'social_descripcion';
 
 	/**
 	 * Constructor
 	 *
 	 * Inicializa la instancia de CodeIgniter y setea el layout por defecto
 	 */
-	public function __construct($layout = 'layouts/default')
+	public function __construct($layout = 'default')
 	{
 		$this->CI		=& get_instance();
 		$this->layout	= $layout;
@@ -60,7 +60,7 @@ class Layout
 	 */
 	function setLayout($layout)
 	{
-		$this->layout = $layout;
+		$this->layout	= $layout;
 	}
 
 
@@ -74,14 +74,16 @@ class Layout
 	 */
 	function view($view = null, $data = null, $return = false)
 	{
-		$layout	= $this->layout;
-        $load_view = array();
-        $load_view['content_for_layout'] = $this->CI->load->view($view, $data, true);   
+		$layout			= "layouts/{$this->layout}";
+		$vista			= (substr($view, 0, 1) == '/' ? $view : "{$this->CI->router->directory}{$this->CI->router->class}/{$view}");
+		$load_view		= array('content_for_layout' => $this->CI->load->view($vista, $data, true));
+
 		if ( $return )
 			return $this->CI->load->view($layout, $load_view, true);
 		else
 			$this->CI->load->view($layout, $load_view, false);
 	}
+
 
 	/**
 	 * Retorna o renderiza un elemento
@@ -93,7 +95,7 @@ class Layout
 	 */
 	public function element($view = null, $data = null, $return = false)
 	{
-		$element = "elements/{$view}";
+		$element			= "elements/{$view}";
 		$content_for_layout	= $data;
 
 		if ( $return )
@@ -101,59 +103,45 @@ class Layout
 		else
 			$this->CI->load->view($element, compact('content_for_layout'), false);
 	}
-
 	public function setTitle($title) {
 		$this->title = $title;
 	}
-
 	public function setKeywords($keywords) {
 		$this->keywords = $keywords;
 	}
-
 	public function setDescripcion($descripcion) {
 		$this->descripcion = $descripcion;
 	}
-
 	public function setSocialSiteName($social_site_name) {
 		$this->social_site_name = $social_site_name;
 	}
-
 	public function setSocialTitle($social_title) {
 		$this->social_title = $social_title;
 	}
-
 	public function setSocialResumen($social_resumen) {
 		$this->social_resumen = $social_resumen;
 	}
-
 	public function setSocialDescripcion($social_descripcion) {
 		$this->social_descripcion = $social_descripcion;
 	}
-
 	public function getTitle() {
 		return $this->title;
-	}
-
+	}	
 	public function getKeywords() {
 		return $this->keywords;
 	}
-
 	public function getDescripcion() {
 		return $this->descripcion;
 	}
-
 	public function getSocialSiteName() {
 		return $this->social_site_name;
 	}
-
 	public function getSocialTitle() {
 		return $this->social_title;
 	}
-
 	public function getSocialResumen() {
 		return $this->social_resumen;
 	}
-	
 	public function getSocialDescripcion() {
 		return $this->social_descripcion;
 	}

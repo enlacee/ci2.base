@@ -1,29 +1,43 @@
 {
-  "name": "ci2.base",
-  "homepage": "https://github.com/enlacee/ci2.base",
+  "name": "Proyecto base",
   "authors": [
-    "Anibal C <detops.tk@gmail.com>"
+    "Luis Figuera <milindex@gmail.com>"
   ],
-  "description": "marco base",
-  "main": "",
+  "description": "Proyecto base para desarrollo web realizado en Codeigniter.",
+  "main": "index.php",
   "moduleType": [],
+  "keywords": [
+    "Codeigniter",
+    "librerias"
+  ],
   "license": "MIT",
+  "homepage": "/",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "assets/lib/",
     "test",
     "tests"
   ],
   "dependencies": {
+    "jquery": "~2.1.4",
     "bootstrap": "~3.3.5",
+    "respond": "~1.4.2",
     "font-awesome": "~4.4.0",
-    "respond": "respondJs#~1.4.2",
-    "datatables": "~1.10.9",
+    "datatables": "~1.10.7",
     "formvalidation.io": "https://github.com/formvalidation/formvalidation.git#v0.4.0",
     "tinymce": "~4.2.6",
-    "jquery-ui": "1.10.4",
-    "jquery": "1.11.1"
+    "d3": "~3.5.0",
+    "bootstrap-datepicker": "https://github.com/eternicode/bootstrap-datepicker.git#1.5.0",
+    "bootstrap-datepicker-mobile": "~0.0.1",
+    "bootstrap-filestyle": "~1.2.1",
+    "jQRangeSlider": "https://github.com/ghusse/jQRangeSlider.git#v5.7.1",
+    "jquery-ui": "~1.11.4",
+    "jquery.customSelect": "https://github.com/adamcoulombe/jquery.customSelect.git#master",
+    "jquery-mousewheel": "~3.1.12",
+    "malihu-custom-scrollbar-plugin": "~3.1.0",
+    "tabcordion": "~1.0.6",
+    "simplyCountable": "https://github.com/weisjohn/jquery-simply-countable.git#master",
+    "timepicki": "https://github.com/senthilraj/TimePicki.git#master"
   }
 }

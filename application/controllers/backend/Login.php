@@ -5,17 +5,22 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->layout->setLayout('layouts/admin');
+		//Call layout
+		$this->layout->setLayout('backend/login');
 	}
 
 	public function index()
 	{
-		$this->layout->css( array('assets/backend/css/additional.css') );
-		$this->layout->js( array('assets/backend/js/additional.js') );
+
+		//Layout options
+		$this->layout->css( array('/assets/backend/css/additional.css') );
+		$this->layout->js( array('/assets/backend/js/additional.js') );
 
 		$data["info"] = "Información";
 
 		//Layout load view
-		$this->layout->view('/backend/login/index', $data);
+		$this->layout->view('login', $data);
 	}
 }
+/* End of file Portada.php */
+/* Location: ./application/controllers/Login.php */
