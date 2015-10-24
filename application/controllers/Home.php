@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends Public_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 		$this->layout->setSocialDescripcion("Description");
 		//$this->layout->css( array('/assets/css/additional.css') );
 		//$this->layout->js( array('/assets/js/additional.js') );
-		
+
 		$data["info"] = "Información";
 
 		//Layout load view
@@ -37,7 +37,7 @@ class Home extends CI_Controller {
 			show_404();
 		}
 
-		//Response 
+		//Response
 		$response = array(
 			'respuesta' => true,
 			'mensaje'		=> "Mensaje enviado!"
