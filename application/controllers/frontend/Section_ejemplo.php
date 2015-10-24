@@ -28,5 +28,3 @@ class Section_ejemplo extends CI_Controller {
 		$this->layout->view('section_ejemplo', $data);
 	}
 }
-/* End of file Portada.php */
-/* Location: ./application/controllers/Section_ejemplo.php */

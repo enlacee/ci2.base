@@ -5,14 +5,11 @@ class Home extends Public_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		//Call layout
-		$this->layout->setLayout('frontend/base');
+		$this->layout->setLayout('layouts/frontend/base');
 	}
 
-	//Page Home
 	public function index()
 	{
-		//Layout options
 		$this->layout->setTitle("Home");
 		$this->layout->setKeywords("keywords");
 		$this->layout->setDescripcion("Descripción");
@@ -20,19 +17,18 @@ class Home extends Public_Controller {
 		$this->layout->setSocialTitle("Title");
 		$this->layout->setSocialResumen("Resumen");
 		$this->layout->setSocialDescripcion("Description");
-		//$this->layout->css( array('/assets/css/additional.css') );
-		//$this->layout->js( array('/assets/js/additional.js') );
 
 		$data["info"] = "Información";
 
 		//Layout load view
-		$this->layout->view('home', $data);
+		$this->layout->view('frontend/home/index', $data);
 	}
 
-	//Send form contact AJAX
+    /**
+     * Send form contact AJAX
+     */
 	public function send_form_contact_all_site()
 	{
-		//Check if isset request AJAX
 		if( ! $this->input->is_ajax_request() ) {
 			show_404();
 		}
@@ -40,10 +36,9 @@ class Home extends Public_Controller {
 		//Response
 		$response = array(
 			'respuesta' => true,
-			'mensaje'		=> "Mensaje enviado!"
-			);
-		echo json_encode( $response );
+			'mensaje' => "Mensaje enviado!"
+        );
+        
+		echo json_encode($response);
 	}
 }
-/* End of file Portada.php */
-/* Location: ./application/controllers/Home.php */

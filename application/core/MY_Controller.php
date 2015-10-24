@@ -23,7 +23,7 @@ class MY_Controller extends CI_Controller
     */
     public function addLibraryFormValidation()
     {
-        $this->layout->css( array('assets/lib/formvalidation.io/dist/css/formValidation.css') );
+        $this->layout->css(array('assets/lib/formvalidation.io/dist/css/formValidation.css'));
         $this->layout->js(array(
             'assets/lib/formvalidation.io/vendor/jquery/jquery.min.js',
             'assets/lib/formvalidation.io/vendor/bootstrap/js/bootstrap.min.js',

@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/acopitan/venezuela/ci3_laser-center-vision.luis/';
+$config['base_url'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -505,3 +505,20 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+/*
+| -------------------------------------------------------------------
+| Native Auto-load
+| -------------------------------------------------------------------
+|
+| Nothing to do with cnfig/autoload.php, this allows PHP autoload to work
+| for base controllers and some third-party libraries.
+|
+*/
+function __autoload($class)
+{
+ if(strpos($class, 'CI_') !== 0)
+ { //echo "exit   ".  APPPATH . 'core/'. $class . '.php'; exit;
+  @include_once( APPPATH . 'core/'. $class . '.php' );
+ }
+}

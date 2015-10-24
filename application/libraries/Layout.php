@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /**
  * Vistas y Layout
  *
@@ -12,18 +11,15 @@ class Layout
 	 * @var object Instancia CodeIgniter
 	 */
 	private $CI;
-
 	/**
 	 * @var string Nombre del layout actual
 	 */
-	public $layout		= 'default';
-
+	public $layout		= '';
 	/**
 	 * Archivos JS para insertar en el layout
 	 * @var string
 	 */
 	public $js			= '';
-
 	/**
 	 * Archivos CSS para insertar en el layout
 	 * @var string
@@ -33,26 +29,23 @@ class Layout
 	 * Variables para mejorar el SEO del sitio
 	 * @var sting
 	 */	
-	public $title       				= 'Titulo_web';	
-	public $keywords    				= 'keywords';	
-	public $descripcion 				= 'descripcion';
-	public $social_site_name 		= 'social_site_name';
-	public $social_title 				= 'social_title';
-	public $social_resumen 			= 'social_resumen';
-	public $social_descripcion 	= 'social_descripcion';
-
+	public $title = 'Titulo_web';	
+	public $keywords = 'keywords';	
+	public $descripcion = 'descripcion';
+	public $social_site_name = 'social_site_name';
+	public $social_title = 'social_title';
+	public $social_resumen = 'social_resumen';
+	public $social_descripcion = 'social_descripcion';
 	/**
 	 * Constructor
 	 *
 	 * Inicializa la instancia de CodeIgniter y setea el layout por defecto
 	 */
-	public function __construct($layout = 'default')
+	public function __construct($layout = 'layouts/frontend')
 	{
 		$this->CI		=& get_instance();
 		$this->layout	= $layout;
 	}
-
-
 	/**
 	 * Setea el layout a utilizar
 	 *
@@ -60,10 +53,8 @@ class Layout
 	 */
 	function setLayout($layout)
 	{
-		$this->layout	= $layout;
+		$this->layout = $layout;
 	}
-
-
 	/**
 	 * Retorna o renderea una vista
 	 *
@@ -74,17 +65,15 @@ class Layout
 	 */
 	function view($view = null, $data = null, $return = false)
 	{
-		$layout			= "layouts/{$this->layout}";
-		$vista			= (substr($view, 0, 1) == '/' ? $view : "{$this->CI->router->directory}{$this->CI->router->class}/{$view}");
-		$load_view		= array('content_for_layout' => $this->CI->load->view($vista, $data, true));
-
+		$layout	= $this->layout;
+        $load_view = array();
+        $load_view['content_for_layout'] = $this->CI->load->view($view, $data, true);   
 		if ( $return )
 			return $this->CI->load->view($layout, $load_view, true);
 		else
 			$this->CI->load->view($layout, $load_view, false);
 	}
-
-
+    
 	/**
 	 * Retorna o renderiza un elemento
 	 *
@@ -95,9 +84,8 @@ class Layout
 	 */
 	public function element($view = null, $data = null, $return = false)
 	{
-		$element			= "elements/{$view}";
+		$element = "elements/{$view}";
 		$content_for_layout	= $data;
-
 		if ( $return )
 			return $this->CI->load->view($element, compact('content_for_layout'), true);
 		else
@@ -126,7 +114,7 @@ class Layout
 	}
 	public function getTitle() {
 		return $this->title;
-	}	
+	}
 	public function getKeywords() {
 		return $this->keywords;
 	}
@@ -142,10 +130,10 @@ class Layout
 	public function getSocialResumen() {
 		return $this->social_resumen;
 	}
+	
 	public function getSocialDescripcion() {
 		return $this->social_descripcion;
 	}
-
 	/**
 	 * Captura y formatea los archivos JS para insertar a la vista
 	 *
@@ -156,8 +144,6 @@ class Layout
 		foreach ( $archivos as $archivo )
 			$this->js .= "<script type=\"text/javascript\" src=\"{$archivo}\"></script>\n";
 	}
-
-
 	/**
 	 * Captura y formatea los archivos JS para insertar a la vista
 	 *
