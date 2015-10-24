@@ -6,6 +6,7 @@ class Home extends Public_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->layout->setLayout('layouts/frontend/base');
+        $this->load->model('Post_model');
 	}
 
 	public function index()
@@ -18,11 +19,46 @@ class Home extends Public_Controller {
 		$this->layout->setSocialResumen("Resumen");
 		$this->layout->setSocialDescripcion("Description");
 
-		$data["info"] = "Información";
-
+        
+        $this->load->model('Blog_model');
+        var_dump($this->Blog_model->get_last_ten_entries());
+        
+		$params = array(
+			'data' => ''
+		);
+ 
 		//Layout load view
-		$this->layout->view('frontend/home/index', $data);
+		$this->layout->view('frontend/home/index', $params);
 	}
+    
+	public function getPostByCategory($category)
+	{
+		// ----- init pagination
+        $limit = 6;
+		$page = 0;
+        $count = $this->Post_model->listAll('post',$status='', $order='', $limit, $offset='', $rows=true);
+
+        if ($count > 0) {
+            $total_pages = ceil($count/$limit);
+        } else {
+           $total_pages = 1;
+        }
+        if ($page > $total_pages) { $page = $total_pages; }// $page = 0
+        if ($page < 1) { $page = 1; }
+
+        $start = $limit * $page - $limit;
+
+        $data['pag']['limit'] = $limit;
+        $data['pag']['page'] = $page;
+        $data['pag']['last_page'] = $total_pages;
+        $data['pag']['start'] = $start;
+        // ----- end pagination
+		$data['data'] = $this->Post_model->listAll('post',$status='', $order='', $limit, $start, $rows=false);
+
+		return $data;
+	}
+    
+    
 
     /**
      * Send form contact AJAX
