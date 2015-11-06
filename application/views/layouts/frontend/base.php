@@ -43,7 +43,7 @@
 <!--End add CSS-->
 
 </head>
-<body>
+<body class="bodyClass">
 
 <!-- Body_bg -->
 <div class="container body_bg">
