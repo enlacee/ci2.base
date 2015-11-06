@@ -7,3 +7,8 @@ Skeleton base for CodeIgniter version 3.x, so we add
 ## Custom App
 
 Page Demo *custom marco* : http://localhost/`home`
+
+## Marco Plugins
+![uploadify](http://www.uploadify.com/documentation/)
+![formvalidation ajax](http://formvalidation.io/examples/ajax-submit/)
+![escodeigniter español](http://escodeigniter.com/guia_usuario/)

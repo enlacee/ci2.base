@@ -1,5 +1,5 @@
 /* CSS Document */
-body {
+.bodyClass {
 	font-family: 'Open Sans', sans-serif;
 	font-size:14px;
 	color: #4D4D4D;
@@ -36,7 +36,7 @@ body {
 }
 
 .body_bg .row.header .col_1 > .ctn {
-	
+
 }
 
 .body_bg .row.header .col_2 > .ctn > .banner_top > img {
@@ -242,14 +242,14 @@ footer.footer .box .box_ctn {
 	display: block;
 	margin: 0;
 	padding: 0;
-} 
+}
 
 footer.footer .box .box_ctn > h3 {
 	padding: 0px 0px 5px 0px;
   margin: 0px 0px 10px 0px;
 	font-size: 20px;
 	border-bottom: 1px solid #EEEEEE;
-} 
+}
 
 footer.footer .box .box_ctn > ul {
 	margin: 0 0 0 7px;
@@ -326,7 +326,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 // RESPONSIVE
 ****************************************************/
 @media (min-width: 1200px) {
-	/*Seccion (00)*/	
+	/*Seccion (00)*/
 }
 
 
@@ -437,7 +437,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 }
 
 
-@media (min-width: 667px) and (max-width: 992px) { 
+@media (min-width: 667px) and (max-width: 992px) {
 	/*Seccion (00)*/
 }
 
@@ -447,7 +447,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 }
 
 
-@media (max-width: 667px) { 
+@media (max-width: 667px) {
 	/*Seccion (00)*/
 }
 
@@ -495,7 +495,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 }
 
 
-@media (min-width: 414px) and (max-width: 480px) { 
+@media (min-width: 414px) and (max-width: 480px) {
 	/*Seccion (00)*/
 }
 
@@ -505,7 +505,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 }
 
 
-@media (min-width: 384px) and (max-width: 600px) { 
+@media (min-width: 384px) and (max-width: 600px) {
 	/*Seccion (00)*/
 }
 
@@ -513,23 +513,23 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 	/*Seccion (00)*/
 }
 
-@media (min-width: 384px) and (max-width: 480px) { 
-	/*Seccion (00)*/	
-}
-
-@media (max-width: 384px) { 
-	/*Seccion (00)*/	
-}
-
-@media (min-width: 320px) and (max-width: 480px) { 
+@media (min-width: 384px) and (max-width: 480px) {
 	/*Seccion (00)*/
 }
 
-@media (min-width: 320px) { 
-	/*Seccion (00)*/	
+@media (max-width: 384px) {
+	/*Seccion (00)*/
 }
 
-@media (min-width: 240px) and (max-width: 480px) { 
+@media (min-width: 320px) and (max-width: 480px) {
+	/*Seccion (00)*/
+}
+
+@media (min-width: 320px) {
+	/*Seccion (00)*/
+}
+
+@media (min-width: 240px) and (max-width: 480px) {
 	/*Seccion (00)*/
 }
 
@@ -555,7 +555,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 * Orientacion (landscape - Horizontal)
 * min-width: 992px
 * max-width: 1024px
-* iPad - PC 
+* iPad - PC
 */
 @media screen and (min-width: 992px) and (max-width: 1024px) and (orientation: landscape) {
 	/*Seccion (00)*/
@@ -609,7 +609,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 
 
 
-	
+
 /**
 * Orientacion (portrait - Vertical)
 * min-width: 600px
@@ -686,7 +686,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 /**
 * Orientacion Horizontal (landscape)
 * width: 568px
-* iPhone 5 
+* iPhone 5
 */
 @media only screen and (max-width: 568px) and (orientation: landscape) {
 	/*Seccion (00)*/
@@ -709,9 +709,9 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 /**
 * Orientacion (portrait - Vertical)
 * max-width: 414px
-* Iphone 6 
+* Iphone 6
 */
-@media only screen and (max-width: 414px) and (orientation: portrait) {	
+@media only screen and (max-width: 414px) and (orientation: portrait) {
 	/*Seccion (00)*/
 }
 
@@ -721,10 +721,10 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 * Orientacion (landscape - Horizontal)
 * min-width: 385px
 * max-width: 480px
-* iPhone 3+4 
+* iPhone 3+4
 */
 @media only screen and (min-width: 385px) and (max-width: 480px) and (orientation: landscape) {
-	/*Seccion (00)*/	
+	/*Seccion (00)*/
 }
 
 
@@ -761,7 +761,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 * Iphone 6
 */
 @media only screen and (max-width: 375px) and (orientation: portrait) {
-	/*Seccion (00)*/	
+	/*Seccion (00)*/
 }
 
 
@@ -780,7 +780,7 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 * max-width: 320px
 */
 @media only screen and (max-width: 320px) {
-	/*Seccion (00)*/	
+	/*Seccion (00)*/
 }
 
 
@@ -788,9 +788,9 @@ footer.footer .box .box_ctn > ul > li > a:focus {
 
 /**
 * Orientacion (portrait - Vertical)
-* min-width: 240px 
+* min-width: 240px
 * max-width: 384px
-* Android (Nexus 4)  only screen and 
+* Android (Nexus 4)  only screen and
 */
 @media only screen and (min-width: 240px) and (max-width: 384px) and (orientation: portrait) {
 	/*Seccion (00)*/

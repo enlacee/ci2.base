@@ -10,7 +10,7 @@
 <meta name="keywords" content="<?php echo $this->layout->getKeywords(); ?>">
 <meta name="robots" content="index,follow" />
 
-<link rel="canonical" href="http://mydomain.com/pagina" />
+<link rel="canonical" href="" />
 
 <!-- OpenGraph metadata-->
 <meta property="og:locale" 			content="es_ES" />
