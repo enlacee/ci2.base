@@ -58,21 +58,19 @@ $route['translate_uri_dashes'] = FALSE;
  */
 
 //Section example
-$route['seccion'] = 'frontend/section_ejemplo';
+$route['seccion'] = 'home/index';
 
 
 /**
  * Backend routes
  */
 
-//Section list (application/backend/list.php)
-$route['admin'] = 'backend/login';
-
-//Section list (application/backend/list.php)
-$route['admin/listado'] = 'backend/listing';
-
-//Section add (application/backend/add.php)
-$route['admin/agregar'] = 'backend/add';
-
-//Section edit (application/backend/edit.php)
-$route['admin/editar'] = 'backend/edit';
+//Section list (application/backend/admin/index.php)
+$route['admin'] = 'backend/admin';
+//Section list (application/backend/add/add.php)
+$route['admin/add'] = 'backend/add/index';
+//Section list (application/backend/edit/edit.php)
+$route['admin/edit/(.*)'] = 'backend/edit/index';
+$route['admin/edit'] = 'backend/edit/index';
+//Section list (application/backend/listing/listing.php)
+$route['admin/list'] = 'backend/lista/index';

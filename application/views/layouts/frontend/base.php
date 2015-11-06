@@ -17,7 +17,7 @@
 <meta property="og:type" 			content="website" />
 <meta property="og:title" 			content="<?php echo $this->layout->getSocialTitle(); ?>" />
 <meta property="og:description"		content="<?php echo $this->layout->getSocialDescripcion(); ?>" />
-<meta property="og:url" 			content="<?php echo current_url(); ?>" />
+<meta property="og:url" 			content="<?php var_dump(base_url()); ?>" />
 <meta property="og:site_name"		content="<?php echo $this->layout->getSocialSiteName(); ?>" />
 <meta property="og:image" 			content="Por definir" />
 <meta property='fb:admins' 			content='<?php echo $this->config->item('cs_api_facebook'); ?>'/>

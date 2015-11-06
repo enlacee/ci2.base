@@ -5,8 +5,7 @@ class Add extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		//Call layout
-		$this->layout->setLayout('backend/add');
+		$this->layout->setLayout('layouts/backend/add');
 	}
 
 	public function index()
@@ -23,8 +22,6 @@ class Add extends CI_Controller {
 		$data["info"] = "Información";
 		
 		//Layout load view
-		$this->layout->view('add', $data);
+		$this->layout->view('backend/add/index', $data);
 	}
 }
-/* End of file Portada.php */
-/* Location: ./application/controllers/Add.php */

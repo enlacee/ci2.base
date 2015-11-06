@@ -1,16 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Lista extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
 		//Call layout
-		$this->layout->setLayout('backend/login');
+		$this->layout->setLayout('layouts/backend/lista');
 	}
 
 	public function index()
 	{
+		//Breadcrumbs
+		$this->breadcrumbs->push('Home', '/');
+		$this->breadcrumbs->push('Listado', '#');
 
 		//Layout options
 		$this->layout->css( array('/assets/backend/css/additional.css') );
@@ -19,8 +22,8 @@ class Login extends CI_Controller {
 		$data["info"] = "Información";
 
 		//Layout load view
-		$this->layout->view('login', $data);
+		$this->layout->view('backend/lista/index', $data);
 	}
 }
 /* End of file Portada.php */
-/* Location: ./application/controllers/Login.php */
+/* Location: ./application/controllers/Listing.php */
