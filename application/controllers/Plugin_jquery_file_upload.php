@@ -15,7 +15,7 @@ class Plugin_jquery_file_upload extends Public_Controller {
 		$data = array();
 
 		$this->addLibraryFormValidation();
-		
+
 		$this->layout->css(array(base_url() . 'assets/lib/blueimp-file-upload/css/jquery.fileupload.css') );
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js') );
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.iframe-transport.js') );
@@ -32,4 +32,17 @@ class Plugin_jquery_file_upload extends Public_Controller {
 
 		$this->layout->view('frontend/plugin_jquery_file_upload/update', $data);
 	}
+
+	/**
+	* JQUERY-FILE-UPLOAD plugin Upload files to /files
+	* change the path directory in : application/libraries/Uploadhandler.php
+	*/
+	public function upload()
+	{
+		$this->load->library('uploadhandler');
+
+		$this->uploadhandler;
+		exit;
+	}
+
 }

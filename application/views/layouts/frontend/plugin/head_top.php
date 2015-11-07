@@ -29,6 +29,10 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/font.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/style.css">
 <script type="text/javascript" src="<?php echo base_url() ?>assets/lib/respond/dest/respond.min.js"></script>
+<script type="text/javascript"><!-- application/ld+json -->
+var context = { "@context" : "http://schema.org", "@type" : "Organization", "name" : "Name Project", "url" : "<?php echo substr(base_url(), 0, strlen(base_url())-1) ?>", "logo": "http://cdn.elcomercio.e3.pe/f/seo/logo.jpg", "sameAs" : [ "<?php echo $this->config->item('cs_facebook_url') ?>", "<?php echo $this->config->item('cs_twitter_url') ?>"] }
+</script>
+
 
 <!--Add CSS (Layout)-->
 <?php echo $this->layout->css; ?>

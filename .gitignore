@@ -4,3 +4,5 @@
 /assets/lib/*
 !/assets/lib/empty.txt
 /nbproject
+/files
+!/files/empty.txt

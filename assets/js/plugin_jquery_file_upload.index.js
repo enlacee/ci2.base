@@ -3,8 +3,7 @@
 $(function () {
 	'use strict';
 	// Change this to the location of your server-side upload handler:
-	var url = window.location.hostname === 'blueimp.github.io' ?
-	        '//jquery-file-upload.appspot.com/' : 'server/php/';
+	var url = context.url + '/plugin_jquery_file_upload/upload' ;
 	$('#fileupload').fileupload({
 		url: url,
 		dataType: 'json',

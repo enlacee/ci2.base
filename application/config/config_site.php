@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Call config example: <?php echo $this->config->item("cs_lang"); ?>
  */
 
-//URL 
+//URL
 
 //Languaje site
 $config['cs_lang'] = 'es';
@@ -23,12 +23,14 @@ $config['cs_currency'] = '€';
 $config['cs_blog'] = '#';
 
 //Facebook Account
+$config['cs_facebook_url'] = '#';
 $config['cs_facebook'] = '@facebook';
 
 //API Facebook API - Show source code for robots
 $config['cs_facebook_api'] = 'FB-AppID';
 
 //Twitter Account
+$config['cs_twitter_url'] = '#';
 $config['cs_twitter'] = '@twitter';
 
 //API Twitter API - Show source code for robots
@@ -48,8 +50,3 @@ $config['cs_youtube'] = '@youtube';
 
 //Instagram Account
 $config['cs_instagram'] = '@instagram';
-
-
-
-
-
