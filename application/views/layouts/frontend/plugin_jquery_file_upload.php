@@ -1,9 +1,5 @@
 <?php $this->load->view("layouts/frontend/plugin/head_top.php"); ?>
 
-<!-- Add styles formvalidation -->
-<link href="<?php echo base_url(); ?>assets/lib/formvalidation/dist/css/formValidation.min.css" type="text/css" rel="stylesheet">
-<!--/ Add styles formvalidation -->
-
 <!-- Add styles file upload -->
 <link href="<?php echo base_url(); ?>assets/lib/" type="text/css" rel="stylesheet">
 <!--/ Add styles file upload -->
@@ -17,19 +13,6 @@
 <?php $this->load->view("layouts/frontend/plugin/footer.php"); ?>
 
 <?php $this->load->view("layouts/frontend/plugin/footer_lib.php"); ?>
-
-
-<!-- Add lib form validation -->
-<script src="<?php echo base_url(); ?>assets/lib/formvalidation/dist/js/formValidation.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/lib/formvalidation/dist/js/framework/bootstrap.min.js"></script>
-<!--/ Add lib form validation -->
-
-
-<!-- Add lib file upload -->
-<script src="<?php echo base_url(); ?>assets/lib/" type="text/javascript"></script>
-<!--/ Add lib file upload -->
-
-
 
 <!--Code javascript and PHP-->
 <script>

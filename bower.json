@@ -38,6 +38,7 @@
     "malihu-custom-scrollbar-plugin": "~3.1.0",
     "tabcordion": "~1.0.6",
     "simplyCountable": "https://github.com/weisjohn/jquery-simply-countable.git#master",
-    "timepicki": "https://github.com/senthilraj/TimePicki.git#master"
+    "timepicki": "https://github.com/senthilraj/TimePicki.git#master",
+    "blueimp-file-upload": "jquery-file-upload#~9.11.2"
   }
 }

@@ -24,14 +24,14 @@ class MY_Controller extends CI_Controller
     public function addLibraryFormValidation()
     {
         $this->layout->css(array(
-            'assets/lib/formvalidation.io/dist/css/formValidation.css',
-            'assets/css/bootstrapValidator.css'
+            base_url() . 'assets/lib/formvalidation.io/dist/css/formValidation.css',
+            base_url() . 'assets/lib/formvalidation.io/dist/css/bootstrapValidator.css'
         ));
         $this->layout->js(array(
-            'assets/lib/formvalidation.io/vendor/jquery/jquery.min.js',
-            'assets/lib/formvalidation.io/vendor/bootstrap/js/bootstrap.min.js',
-            'assets/lib/formvalidation.io/dist/js/formValidation.js',
-            'assets/lib/formvalidation.io/dist/js/framework/bootstrap.js'
+            base_url() . 'assets/lib/formvalidation.io/vendor/jquery/jquery.min.js',
+            base_url() . 'assets/lib/formvalidation.io/vendor/bootstrap/js/bootstrap.min.js',
+            base_url() . 'assets/lib/formvalidation.io/dist/js/formValidation.js',
+            base_url() . 'assets/lib/formvalidation.io/dist/js/framework/bootstrap.js'
         ));
     }
 }
