@@ -8,6 +8,7 @@ class MY_Controller extends CI_Controller
     function __construct ()
     {
         parent::__construct();
+        $this->loadVariableImage();
 
         ENVIRONMENT != 'development' || $this->output->enable_profiler(TRUE);
 /*        $this->load->database();
@@ -33,5 +34,22 @@ class MY_Controller extends CI_Controller
             base_url() . 'assets/lib/formvalidation.io/dist/js/formValidation.js',
             base_url() . 'assets/lib/formvalidation.io/dist/js/framework/bootstrap.js'
         ));
+    }
+
+        // images tmp (imagenes temporales)
+    /**
+     * list of variables for consummer and response
+     * process (create thumbnail)
+     */
+    public function loadVariableImage()
+    {
+
+        $this->load->vars(array(
+            'varGlobal' => array(
+                'tmpPath'   => FCPATH . 'assets/images/temporal/',
+                'tmpUrl'    => base_url() . 'assets/images/temporal/'
+            )
+        ));
+
     }
 }

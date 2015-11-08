@@ -37,12 +37,37 @@ class Plugin_jquery_file_upload extends Public_Controller {
 	* JQUERY-FILE-UPLOAD plugin Upload files to /files
 	* change the path directory in : application/libraries/Uploadhandler.php
 	*/
-	public function upload()
+	public function upload_image_perfil()
 	{
+		$path = $this->load->get_var('varGlobal')['tmpPath'];
+		$url = $this->load->get_var('varGlobal')['tmpUrl'];
+		/*$options = array(
+			'print_response' => false,
+			'script_url' 		=> 'xxx',
+			'upload_dir'		=> $path,
+			'upload_url'		=> $url
+		);*/
 		$this->load->library('uploadhandler');
 
-		$this->uploadhandler;
-		exit;
+		$dataUpload = $this->uploadhandler->post();
+		$nameFile = isset($dataUpload['files'][0]->name) ? $dataUpload['files'][0]->name : false;
+
+		$userData = $this->session->userdata('user');
+
+		if (!is_null($userData) && is_array($userData)
+			&& !empty($path) && !empty($url) && !empty($nameFile)
+		) {
+			$userData['uploads']['perfil'] = array(
+				'path'	=> $path .  $nameFile,
+				'url'	=> $url . $nameFile
+			);
+			$this->session->set_userdata('user', $userData);
+			json_encode($userData['uploads']['perfil']['url']);
+		} else {
+			echo 0;
+		}
+
+		var_dump($this->session->userdata('user'));exit;
 	}
 
 }

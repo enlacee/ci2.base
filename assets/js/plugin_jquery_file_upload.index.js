@@ -3,7 +3,7 @@
 $(function () {
 	'use strict';
 	// Change this to the location of your server-side upload handler:
-	var url = context.url + '/plugin_jquery_file_upload/upload' ;
+	var url = context.url + '/plugin_jquery_file_upload/upload_image_perfil' ;
 	$('#fileupload').fileupload({
 		url: url,
 		dataType: 'json',
