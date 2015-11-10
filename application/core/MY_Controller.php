@@ -10,7 +10,7 @@ class MY_Controller extends CI_Controller
         parent::__construct();
         $this->loadVariableImage();
 
-        ENVIRONMENT != 'development' || $this->output->enable_profiler(TRUE);
+        //ENVIRONMENT != 'development' || $this->output->enable_profiler(TRUE);
 /*        $this->load->database();
         $this->data['user'] = 'Joost';
 */
