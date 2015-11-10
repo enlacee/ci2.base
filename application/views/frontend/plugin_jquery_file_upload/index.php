@@ -48,25 +48,21 @@
               </div>
               <div class="panel-body">
                 <div class="form-group">
-                  <input type="file" class="form-control" name="image" id="image">
-
+                 <!--<input type="userfile" class="form-control" name="image" id="image">-->
                     <div class=" container_test">
-                        <!-- The fileinput-button span is used to style the file input field as button -->
                         <span class="btn btn-success fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>Select files...</span>
                             <!-- The file input field used as target for the file upload widget -->
-                            <input id="fileupload" type="file" name="files[]" multiple>
+                            <input id="fileupload" type="file" name="userfile">
                         </span>
+                        <input type="text" id="userfileLength" name="userfileLength" value="0">
                         <br>
                         <br>
                         <!-- The global progress bar -->
                         <div id="progress" class="progress">
                             <div class="progress-bar progress-bar-success"></div>
                         </div>
-                        <!-- The container for the uploaded files -->
-                        <div id="files" class="files"></div>
-                        <br>
                     </div>
 
 
@@ -84,7 +80,24 @@
               </div>
               <div class="panel-body">
                 <div class="form-group">
-                  <input type="file" class="form-control" name="dni[]" id="dni">
+                  <!--<input type="file" class="form-control" name="dni[]" id="dni">-->
+
+                    <div class=" container_test">
+                        <span class="btn btn-success fileinput-button">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Select files...</span>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <input id="dni" type="file" name="dni[]">
+                        </span>
+                        <input type="text" id="dniLength" name="dniLength" value="0">
+                        <br>
+                        <br>
+                        <!-- The global progress bar -->
+                        <div id="progress2" class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                    </div>
+
                 </div><!--/ input file -->
               </div><!--/ panel-body -->
             </div><!--/ panel -->
@@ -99,7 +112,22 @@
               </div>
               <div class="panel-body">
                 <div class="form-group">
-                  <input type="file" class="form-control" name="documents[]" id="documents">
+                  <!--<input type="file" class="form-control" name="documents[]" id="documents">-->
+                    <div class=" container_test">
+                        <span class="btn btn-success fileinput-button">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Select files...</span>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <input id="documents" type="file" name="documents[]">
+                        </span>
+                        <input type="text" id="dniLength" name="dniLength" value="0">
+                        <br>
+                        <br>
+                        <!-- The global progress bar -->
+                        <div id="progress3" class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                    </div>
                 </div><!--/ input file -->
               </div><!--/ panel-body -->
             </div><!--/ panel -->
@@ -121,3 +149,4 @@
     </div><!--/ col-xs-12 -->
   </div><!--/ row -->
 </div><!--/ container -->
+

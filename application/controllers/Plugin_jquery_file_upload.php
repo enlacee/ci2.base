@@ -13,15 +13,31 @@ class Plugin_jquery_file_upload extends Public_Controller {
 	public function index()
 	{
 		$data = array();
-
 		$this->addLibraryFormValidation();
 
-		$this->layout->css(array(base_url() . 'assets/lib/blueimp-file-upload/css/jquery.fileupload.css') );
-		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js') );
-		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.iframe-transport.js') );
-		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload.js') );
+		// css
+		$this->layout->css(array(base_url() . 'assets/lib/blueimp-file-upload/css/jquery.fileupload.css'));
+		// js
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js'));
+		//(x) $this->layout->js(array(base_url() . 'assets/lib/blueimp-tmpl/js/tmpl.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-load-image/js/load-image.all.min.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-canvas-to-blob/js/canvas-to-blob.min.js'));
+		//(no found) blueimp Gallery script : jquery.blueimp-gallery.min.js
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.iframe-transport.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload.js'));
+		
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-process.js'));
+		/*
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-image.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-audio.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-video.js'));
+		*/
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-validate.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-ui.js'));
 
 		$this->layout->js(array(base_url() . 'assets/js/plugin_jquery_file_upload.index.js'));
+
+		// set view
 		$this->layout->view('frontend/plugin_jquery_file_upload/index', $data);
 	}
 
@@ -34,40 +50,40 @@ class Plugin_jquery_file_upload extends Public_Controller {
 	}
 
 	/**
-	* JQUERY-FILE-UPLOAD plugin Upload files to /files
-	* change the path directory in : application/libraries/Uploadhandler.php
+	* Upload image perfil
+	* Max sise is 100 kb
 	*/
 	public function upload_image_perfil()
 	{
-		$path = $this->load->get_var('varGlobal')['tmpPath'];
-		$url = $this->load->get_var('varGlobal')['tmpUrl'];
-		/*$options = array(
-			'print_response' => false,
-			'script_url' 		=> 'xxx',
-			'upload_dir'		=> $path,
-			'upload_url'		=> $url
-		);*/
-		$this->load->library('uploadhandler');
+		$result = array();
+		$pathBase = $this->load->get_var('varGlobal')['tmpPath'];
+		$urlBase = $this->load->get_var('varGlobal')['tmpUrl'];
+		$config['upload_path']          = $pathBase;
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 100; //kilobytes
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;
 
-		$dataUpload = $this->uploadhandler->post();
-		$nameFile = isset($dataUpload['files'][0]->name) ? $dataUpload['files'][0]->name : false;
+		$this->load->library('upload', $config);
 
-		$userData = $this->session->userdata('user');
-
-		if (!is_null($userData) && is_array($userData)
-			&& !empty($path) && !empty($url) && !empty($nameFile)
-		) {
-			$userData['uploads']['perfil'] = array(
-				'path'	=> $path .  $nameFile,
-				'url'	=> $url . $nameFile
-			);
-			$this->session->set_userdata('user', $userData);
-			json_encode($userData['uploads']['perfil']['url']);
+		if ( ! $this->upload->do_upload()) {
+			$result['files']['error'] = $this->upload->display_errors();
 		} else {
-			echo 0;
+			// get data session
+			$sessionUser = $this->session->userdata('user');
+			if (!is_null($sessionUser) && is_array($sessionUser)) {
+				$result['files'] = $this->upload->data();
+				$result['files']['url'] =  $urlBase . $this->upload->data('file_name');
+				// save in session
+				$sessionUser['uploads']['perfil'] = $result;
+				$this->session->set_userdata('user', $sessionUser);
+			} else {
+				$result = $data['files']['error'] = 'Error session expired!.';
+			}
 		}
 
-		var_dump($this->session->userdata('user'));exit;
+		echo json_encode($result);
+		exit;
 	}
 
 }
