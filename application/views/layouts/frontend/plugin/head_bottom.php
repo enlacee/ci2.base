@@ -25,6 +25,9 @@
             <li class="dropdown">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jquery file upload<strong class="caret"></strong></a>
               <ul class="dropdown-menu">
+                <li><a href="<?php echo base_url('plugin_jquery_file_upload/base'); ?>">Basico</a></li>
+                <li><a href="<?php echo base_url('plugin_jquery_file_upload/base_plus'); ?>">Basico Plus</a></li>
+
                 <li>
                   <a href="<?php echo base_url('plugin_jquery_file_upload/index'); ?>">Register</a>
                 </li>

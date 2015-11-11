@@ -13,33 +13,28 @@ class Plugin_jquery_file_upload extends Public_Controller {
 	public function index()
 	{
 		$data = array();
-		$this->addLibraryFormValidation();
-
+		//$this->addLibraryFormValidation();
 		// css
 		$this->layout->css(array(base_url() . 'assets/lib/blueimp-file-upload/css/jquery.fileupload.css'));
 		// js
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js'));
-		//(x) $this->layout->js(array(base_url() . 'assets/lib/blueimp-tmpl/js/tmpl.js'));
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-load-image/js/load-image.all.min.js'));
-		$this->layout->js(array(base_url() . 'assets/lib/blueimp-canvas-to-blob/js/canvas-to-blob.js'));
-		//(no found) blueimp Gallery script : jquery.blueimp-gallery.min.js
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.iframe-transport.js'));
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload.js'));
-		
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-process.js'));
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-image.js'));
-		/*
-		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-audio.js'));
-		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-video.js'));
-		*/
-		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-validate.js'));
-		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-ui.js'));
-
 		$this->layout->js(array(base_url() . 'assets/js/plugin_jquery_file_upload.index.js'));
 
 		// set view
 		$this->layout->view('frontend/plugin_jquery_file_upload/index', $data);
 
+	}
+
+	//Update
+	public function update()
+	{
+		$data = array();
+		$this->layout->view('frontend/plugin_jquery_file_upload/base', $data);
 	}
 
 	public function base()
@@ -59,13 +54,66 @@ class Plugin_jquery_file_upload extends Public_Controller {
 		$this->layout->view('frontend/plugin_jquery_file_upload/base');
 	}
 
-	//Update
-	public function update()
+	public function upload_base()
 	{
-		$data = array();
-		$this->layout->view('frontend/plugin_jquery_file_upload/base', $data);
+		$result = array();
+		$pathBase = $this->load->get_var('varGlobal')['tmpPath'];
+        $config['upload_path']          = $pathBase;
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 100;
+        $config['max_width']            = 1024;
+        $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('userfile')) {
+            $data = array('error' => $this->upload->display_errors());
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+        }
+        
+		echo json_encode($data);
+		exit;
+    }
+
+	public function base_plus()
+	{
+		// css
+		$this->layout->css(array(base_url() . 'assets/lib/blueimp-file-upload/css/jquery.fileupload.css'));
+		// js
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-load-image/js/load-image.all.min.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.iframe-transport.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-process.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-image.js'));
+
+		//layout
+		$this->layout->js(array(base_url() . 'assets/js/plugin_jquery_file_upload.base_plus.js'));
+		$this->layout->view('frontend/plugin_jquery_file_upload/base_plus');
 	}
 
+	public function upload_base_plus()
+	{
+		$result = array();
+		$pathBase = $this->load->get_var('varGlobal')['tmpPath'];
+        $config['upload_path']          = $pathBase;
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 100;
+        $config['max_width']            = 1024;
+        $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('files')) {
+            $data = array('error' => $this->upload->display_errors());
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+        }
+        
+		echo json_encode($data);
+		exit;
+    }
 	/**
 	* Upload image perfil
 	* Max sise is 100 kb
@@ -118,7 +166,9 @@ class Plugin_jquery_file_upload extends Public_Controller {
 		$config['max_height']           = 768;
 
 		$this->load->library('upload', $config);
-
+		var_dump($config);
+var_dump($this->upload->do_upload());
+var_dump($_FILES);EXIT;
 		if ( ! $this->upload->do_upload()) {
 			$result['files']['error'] = $this->upload->display_errors();
 		} else {
