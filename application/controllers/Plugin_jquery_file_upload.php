@@ -131,7 +131,7 @@ class Plugin_jquery_file_upload extends Public_Controller {
 
 		$this->load->library('upload', $config);
 
-		if ( ! $this->upload->do_upload()) {
+		if ( ! $this->upload->do_upload('avatarfile')) {
 			$result['files']['error'] = $this->upload->display_errors();
 		} else {
 			// get data session

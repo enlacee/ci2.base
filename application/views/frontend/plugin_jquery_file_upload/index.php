@@ -4,7 +4,8 @@
     <div class="col-xs-12">
 
       <!-- form -->
-      <form name="form" id="form" action="<?php echo base_url(); ?>frontend/uploadifive/save" method="POST" enctype="multipart/form-data">
+      <form name="form" id="form" action="" method="POST" enctype="multipart/form-data" 
+      onsubmit="alert('stop submit'); return false;">
         <legend>Formulario para subir imagen y documentos al servidor al servidor</legend>
         <p><strong>Alcance:</strong> Crear varias aplicaciones funcionales, seguras y optimas para subir ficheros al servidor usando AJAX, PHP y MySQL, utilizaremos plugins especificos que iremos integrando a este proyecto base como ejemplos, luego de desarrollarlos todos chequearemos el rendimiento y requerimientos mínimos de detalles para integrarlos en todos los proyectos que desarrollemos. </p>
 
@@ -50,20 +51,23 @@
                 <div class="form-group">
                  <!--<input type="userfile" class="form-control" name="image" id="image">-->
                     <div class=" container_test">
+                        <br>
+                        <!-- The fileinput-button span is used to style the file input field as button -->
                         <span class="btn btn-success fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
-                            <span>Select files...</span>
+                            <span>Add files...</span>
                             <!-- The file input field used as target for the file upload widget -->
-                            <input id="userfile" type="file" name="userfile">
+                            <input id="avatarfile" type="file" name="avatarfile" multiple>
                         </span>
-                        <input type="text" id="userfileLength" name="userfileLength" value="0">
                         <br>
                         <br>
                         <!-- The global progress bar -->
-                        <div id="progress1" class="progress">
+                        <div id="avatarfile-progress" class="progress">
                             <div class="progress-bar progress-bar-success"></div>
                         </div>
-
+                        <!-- The container for the uploaded files -->
+                        <div id="avatarfile-files" class="files"></div>
+                        <br>
                     </div>
 
 
@@ -106,16 +110,16 @@
         <i class="glyphicon glyphicon-plus"></i>
         <span>Add files...</span>
         <!-- The file input field used as target for the file upload widget -->
-        <input id="fileupload" type="file" name="files[]" multiple>
+        <input id="avatarfile" type="file" name="avatarfile" multiple>
     </span>
     <br>
     <br>
     <!-- The global progress bar -->
-    <div id="progress" class="progress">
+    <div id="avatarfile-progress" class="progress">
         <div class="progress-bar progress-bar-success"></div>
     </div>
     <!-- The container for the uploaded files -->
-    <div id="files" class="files"></div>
+    <div id="avatarfile-files" class="files"></div>
     <br>
 
 
