@@ -119,7 +119,9 @@ class Plugin_jquery_file_upload extends Public_Controller {
 	* Max sise is 100 kb
 	*/
 	public function upload_image_perfil()
-	{
+	{	
+		$this->upload_image_perfil_delete();
+
 		$result = array();
 		$pathBase = $this->load->get_var('varGlobal')['tmpPath'];
 		$urlBase = $this->load->get_var('varGlobal')['tmpUrl'];
@@ -132,18 +134,20 @@ class Plugin_jquery_file_upload extends Public_Controller {
 		$this->load->library('upload', $config);
 
 		if ( ! $this->upload->do_upload('avatarfile')) {
-			$result['files']['error'] = $this->upload->display_errors();
+			$result['files'][0]['error'] = strip_tags($this->upload->display_errors());
 		} else {
 			// get data session
 			$sessionUser = $this->session->userdata('user');
 			if (!is_null($sessionUser) && is_array($sessionUser)) {
-				$result['files'] = $this->upload->data();
-				$result['files']['url'] =  $urlBase . $this->upload->data('file_name');
+				$result['files'][0] = $this->upload->data();
+				$result['files'][0]['url'] =  $urlBase . $this->upload->data('file_name');
+				$result['files'][0]['url_delete'] =  base_url() . 'plugin_jquery_file_upload/upload_image_perfil?delete=' . $this->upload->data('file_name');
+
 				// save in session
 				$sessionUser['uploads']['perfil'] = $result;
 				$this->session->set_userdata('user', $sessionUser);
 			} else {
-				$result = $data['files']['error'] = 'Error session expired!.';
+				$result = $data['files'][0]['error'] = 'Error session expired!.';
 			}
 		}
 
@@ -151,6 +155,21 @@ class Plugin_jquery_file_upload extends Public_Controller {
 		exit;
 	}
 
+	protected function upload_image_perfil_delete()
+	{	
+		$varDelete = $this->input->get('delete');
+		if (!empty($varDelete)) {
+			$result = false;
+			$pathBase = $this->load->get_var('varGlobal')['tmpPath'];
+			$fileToDelete = $pathBase . $varDelete;
+			if (file_exists($fileToDelete)) {
+				$result = unlink($pathBase . $varDelete);
+			}			
+
+			echo json_encode($result);
+			exit;
+		}
+	}
 	/**
 	* Upload DNI
 	*/

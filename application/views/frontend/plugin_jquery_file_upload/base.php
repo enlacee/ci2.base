@@ -19,5 +19,8 @@
         </div>
 
     </div>
+    <div id="dropZone" class="drop" style="height:100px; border:1px solid red">
+    a
+    </div>
 	
 </div>

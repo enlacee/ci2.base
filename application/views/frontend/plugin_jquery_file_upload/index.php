@@ -5,7 +5,7 @@
 
       <!-- form -->
       <form name="form" id="form" action="" method="POST" enctype="multipart/form-data" 
-      onsubmit="alert('stop submit'); return false;">
+      onsubmit="console.log('stop submit'); return false;">
         <legend>Formulario para subir imagen y documentos al servidor al servidor</legend>
         <p><strong>Alcance:</strong> Crear varias aplicaciones funcionales, seguras y optimas para subir ficheros al servidor usando AJAX, PHP y MySQL, utilizaremos plugins especificos que iremos integrando a este proyecto base como ejemplos, luego de desarrollarlos todos chequearemos el rendimiento y requerimientos mínimos de detalles para integrarlos en todos los proyectos que desarrollemos. </p>
 
@@ -35,10 +35,13 @@
                     </div><!--/ input file -->
                   </div><!--/ box_input -->
 
+
+
                 </div><!--/ row -->
               </div><!--/ panel-body -->
             </div><!--/ panel -->
           </div><!--/ box -->
+
 
 
           <!-- box -->
@@ -57,8 +60,9 @@
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>Add files...</span>
                             <!-- The file input field used as target for the file upload widget -->
-                            <input id="avatarfile" type="file" name="avatarfile" multiple>
+                            <input type="file" id="avatarfile" name="avatarfile">
                         </span>
+                        <input type="text" id="avatarfileLength" name="avatarfileLength" value="1">
                         <br>
                         <br>
                         <!-- The global progress bar -->

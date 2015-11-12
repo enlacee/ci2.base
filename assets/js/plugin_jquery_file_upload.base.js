@@ -10,6 +10,7 @@ $(function () {
         autoUpload: true,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         maxNumberOfFiles: 1,
+        dropZone: '#dropZone',
         done: function (e, data) {
             if (typeof(data.error) == 'undefined') {
                 $('#userfile').attr('disabled', 'disabled');
