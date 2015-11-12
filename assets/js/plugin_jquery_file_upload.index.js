@@ -178,3 +178,13 @@ function deleteFile(self) {
     counterClient--;
     console.log('counterClient', counterClient)
 }
+
+
+// send data 
+$('#enviar').click(function(){
+    var url = context.url + '/plugin_jquery_file_upload/index';
+    $.post( url, $('#form').serialize() ,function( data ) {
+        console.log('data', data)
+    });
+
+});

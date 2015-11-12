@@ -156,7 +156,7 @@
 
         <div class="row">
           <div class="col-xs-6">
-            <button type="submit" class="btn btn-primary">Enviar </button>
+            <button id="enviar" class="btn btn-primary">Enviar </button>
           </div>
         </div>
 

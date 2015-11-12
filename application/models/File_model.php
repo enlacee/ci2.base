@@ -9,11 +9,17 @@ class File_model  extends CI_Model {
 
     protected $_name = 'files';
 
+    public function __construct()
+    {
+            parent::__construct();
+    }
+
     /**
      *
      * @param Integer $id
      * @return Array data Element.
      */
+    /*
     public function get($id)
     {
         $rs = false;
@@ -29,11 +35,12 @@ class File_model  extends CI_Model {
 
         return $rs;
     }
+    */
 
     // Insert Image Into Database.
-    public function insert($data)
-	{
-        $this->db->insert($this->_name, $data);
+    public function insertar($data)
+	{//var_dump($data);exit;
+        $this->db->insert('files', array('name' => 'name.jpg'));
         return $this->db->insert_id();
     }
 
