@@ -4,5 +4,4 @@
 /assets/lib/*
 !/assets/lib/empty.txt
 /nbproject
-/assets/images/temporal
 !/assets/images/temporal/index.html
