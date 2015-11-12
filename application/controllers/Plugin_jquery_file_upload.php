@@ -23,6 +23,8 @@ class Plugin_jquery_file_upload extends Public_Controller {
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload.js'));
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-process.js'));
 		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-image.js'));
+		$this->layout->js(array(base_url() . 'assets/lib/blueimp-file-upload/js/jquery.fileupload-validate.js'));
+
 		$this->layout->js(array(base_url() . 'assets/js/plugin_jquery_file_upload.index.js'));
 
 		// set view
@@ -97,6 +99,7 @@ class Plugin_jquery_file_upload extends Public_Controller {
 	{
 		$result = array();
 		$pathBase = $this->load->get_var('varGlobal')['tmpPath'];
+		$urlBase = $this->load->get_var('varGlobal')['tmpUrl'];
         $config['upload_path']          = $pathBase;
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 100;
@@ -106,12 +109,13 @@ class Plugin_jquery_file_upload extends Public_Controller {
         $this->load->library('upload', $config);
 
         if ( ! $this->upload->do_upload('files')) {
-            $data = array('error' => $this->upload->display_errors());
+        	$result['files'][0]['error'] = $this->upload->display_errors();
         } else {
-            $data = array('upload_data' => $this->upload->data());
+        	$result['files'][0] = $this->upload->data();
+        	$result['files'][0]['url'] =  $urlBase . $this->upload->data('file_name');
         }
         
-		echo json_encode($data);
+		echo json_encode($result);
 		exit;
     }
 	/**

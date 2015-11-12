@@ -1,12 +1,11 @@
 
 /*jslint unparam: true, regexp: true */
 /*global window, $ */
+var counterClient = 0;
 $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
         var url = context.url + '/plugin_jquery_file_upload/upload_image_perfil',
-        counterClient = 0,
-        counterServer = 0,
         uploadButton = $('<button/>')
             .addClass('btn btn-primary')
             .prop('disabled', true)
@@ -31,7 +30,9 @@ $(function () {
         autoUpload: false,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         maxFileSize: 999000,
-        maxNumberOfFiles: 1,
+        disableValidation: false,
+        limitConcurrentUploads:2,
+        maxNumberOfFiles: 2,
         limitConcurrentUploads:1,
         //dropZone: '#dropZone',
         // Enable image resizing, except for Android and Opera,
@@ -41,29 +42,41 @@ $(function () {
             .test(window.navigator.userAgent),
         previewMaxWidth: 100,
         previewMaxHeight: 100,
-        previewCrop: true
+        previewCrop: true,
+
     }).on('fileuploadadd', function (e, data) {
-        data.context = $('<div/>').appendTo('#avatarfile-files');
-        $.each(data.files, function (index, file) {
-            var node = $('<p/>')
-                .append($('<span/>').text(file.name));
-            if (!index) {
-                node
-                    .append('<br>')
-                    .append(uploadButton.clone(true).data(data));
-            }
-            node.appendTo(data.context);
-
-            // Extra
-            // upload file with one Event
-            $(".btn-primary").trigger( "click" );
+    console.log('counterClient', counterClient)
+    
+        var inputLimit = $(this).parent().next().val(); 
+        if (counterClient >= inputLimit) {
+            alert("solo "+ inputLimit + 'archivos');
+            //$(this).attr('disabled', 'disabled');
+            //return false;
+            //delete data.files;
+        } else {
+            data.context = $('<div/>').appendTo('#avatarfile-files');
+            $.each(data.files, function (index, file) {
+                var node = $('<p/>')
+                    .append($('<span/>').text(file.name));
+                if (!index) {
+                    node
+                        .append('<br>')
+                        .append(uploadButton.clone(true).data(data));
+                }
+                node.appendTo(data.context);
+            });
             counterClient++;
-            if ($('#avatarfileLength').val() == 1) {
-                $('#avatarfile').attr('disabled', 'disabled');
-                $('#avatarfile').parent().addClass('disabled');               
-            }
+        }
 
-        });
+console.log('counterClient', counterClient)
+        // Extra
+        // upload file with one Event
+        $(".btn-primary").trigger( "click" );            
+        if ($('#avatarfileLength').val() == 1) {/*
+            $('#avatarfile').attr('disabled', 'disabled');
+            $('#avatarfile').parent().addClass('disabled');*/           
+        }
+        
     }).on('fileuploadprocessalways', function (e, data) {
         var index = data.index,
             file = data.files[index],
@@ -90,6 +103,7 @@ $(function () {
             progress + '%'
         );
     }).on('fileuploaddone', function (e, data) {
+        
         $.each(data.result.files, function (index, file) {
             if (file.url) {
                 var link = $('<a>')
@@ -107,9 +121,6 @@ $(function () {
                     $(data.context.children()[index]).parent().append(linkDelete);
                 }
 
-            console.log('counterServer', counterServer)
-            counterServer++;
-            console.log('counterServer', counterServer)
             } else if (file.error) {
                 var error = $('<span class="text-danger"/>').text(file.error);
                 $(data.context.children()[index])
@@ -132,10 +143,15 @@ $(function () {
         });
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+
 });
 
 
 // functiones
+/**
+* Delete image
+*/
 function deleteFile(self) {
     event.preventDefault();
     var url_delete = self.getAttribute('data-delete-url');
@@ -152,13 +168,13 @@ function deleteFile(self) {
         removeImage();
     }
 
-
     function removeImage() {
         self.parentNode.innerHTML = '';
         $('#avatarfile').removeAttr('disabled');
         $('#avatarfile').parent().removeClass('disabled');
     }
 
+    console.log('counterClient', counterClient)
+    counterClient--;
+    console.log('counterClient', counterClient)
 }
-
-
