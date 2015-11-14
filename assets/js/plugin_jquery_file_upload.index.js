@@ -185,9 +185,10 @@ function deleteFile(self) {
 
 
 // submit Form
-$('#enviar').click(function(){ alert("click enviar")
+$('#enviar').click(function(){
     var url = context.url + '/plugin_jquery_file_upload/index';
     $.post( url, $('#form').serialize() ,function( data ) {
-        console.log('data', data)
+        alert("se guardo correctamente");
+        window.location = context.url + "/plugin_jquery_file_upload";
     });
 });
