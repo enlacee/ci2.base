@@ -16,8 +16,8 @@ class Post_model  extends CI_Model {
     const STATUS_FALSE = 0;*/
 
     public function __construct() {
-    //    parent::__construct();
-
+        parent::__construct();
+        $this->load->database();
     }
 
     /***

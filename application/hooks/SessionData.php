@@ -13,7 +13,7 @@ class SessionData{
 
 		if (!$this->CI->session->userdata('user')) {
 			$data = array(
-				'id' => 123,
+				'id' => 1,
 				'name' => 'pepe rios',
 				'uploads' => array()
 			);

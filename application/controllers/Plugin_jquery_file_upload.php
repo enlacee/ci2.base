@@ -18,13 +18,32 @@ class Plugin_jquery_file_upload extends MY_Controller {
 		if ($this->input->method() == 'post') {
 			$this->load->model('File_model');
 			$uSession = $this->session->userdata('user');
-			$fileName = isset($uSession['uploads']['perfil']['files'][0]['file_name']) ?
-				$uSession['uploads']['perfil']['files'][0]['file_name'] : '';
+			$arrayAvatar = $uSession['uploads']['perfil']['files'][0];
+			$dataInsert = array();
 
-			$dataInsert = array(
-				'name' => $fileName
-			);
-			$this->File_model->insertar($dataInsert);
+			if (is_array($arrayAvatar)) {
+				$path_upload = $this->load->get_var('varGlobal')['path_upload'];
+				// move and remove file
+				if (file_exists($arrayAvatar['full_path']) && !empty($path_upload)) {
+					$destination = $path_upload . $arrayAvatar['file_name'];
+					rename($arrayAvatar['full_path'], $destination);
+
+					// reformat destination path 
+					if (substr($destination, 0,2) == './') {
+						$destination = substr($destination, 2, strlen($destination));
+					}
+					// save image in database
+					$dataInsert['name'] = $destination;
+					$dataInsert['id_user'] = $uSession['id'];
+					$this->File_model->insertar($dataInsert);
+				}
+
+				// 	Remove data session
+				unset($uSession['uploads']['perfil']['files']);
+				$this->session->set_userdata('user', $uSession);
+			}
+
+			var_dump($this->session->userdata('user'));
 			exit;
 		}
 
@@ -44,7 +63,6 @@ class Plugin_jquery_file_upload extends MY_Controller {
 
 		// set view
 		$this->layout->view('frontend/plugin_jquery_file_upload/index', $data);
-
 	}
 
 	/**

@@ -46,10 +46,11 @@ class MY_Controller extends CI_Controller
 
         $this->load->vars(array(
             'varGlobal' => array(
-                //'tmpPath'   => FCPATH . 'assets/images/temporal/',
-                //'tmpUrl'    => base_url() . 'assets/images/temporal/'
-                'tmpPath'   => './assets/images/temporal/',
-                'tmpUrl'    => base_url() . 'assets/images/temporal/'
+                //'tmpPath'   => FCPATH . 'assets/images/tmp/',
+                //'tmpUrl'    => base_url() . 'assets/images/tmp/'
+                'path_upload'   => './assets/images/',
+                'tmpPath'       => './assets/images/tmp/',
+                'tmpUrl'        => base_url() . 'assets/images/tmp/'
             )
         ));
 

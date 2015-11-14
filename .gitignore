@@ -1,7 +1,8 @@
-## no follow
+#ide
+/nbproject
 /system
 /node_modules
 /assets/lib/*
 !/assets/lib/empty.txt
-/nbproject
-!/assets/images/temporal/index.html
+/assets/images
+!/assets/images/index.html

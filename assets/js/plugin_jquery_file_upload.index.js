@@ -7,7 +7,7 @@ $(function () {
     // Change this to the location of your server-side upload handler:
         var url = context.url + '/plugin_jquery_file_upload/upload_image_perfil',
         uploadButton = $('<button/>')
-            .addClass('btn btn-primary')
+            .addClass('btn btn-primary my-btn-upload')
             .prop('disabled', true)
             .text('Processing...')
             .on('click', function () {
@@ -45,14 +45,9 @@ $(function () {
         previewCrop: true,
 
     }).on('fileuploadadd', function (e, data) {
-    console.log('counterClient', counterClient)
-    
         var inputLimit = $(this).parent().next().val(); 
         if (counterClient >= inputLimit) {
-            alert("solo "+ inputLimit + 'archivos');
-            //$(this).attr('disabled', 'disabled');
-            //return false;
-            //delete data.files;
+
         } else {
             data.context = $('<div/>').appendTo('#avatarfile-files');
             $.each(data.files, function (index, file) {
@@ -68,15 +63,8 @@ $(function () {
             counterClient++;
         }
 
-console.log('counterClient', counterClient)
-        // Extra
-        // upload file with one Event
-        $(".btn-primary").trigger( "click" );            
-        if ($('#avatarfileLength').val() == 1) {/*
-            $('#avatarfile').attr('disabled', 'disabled');
-            $('#avatarfile').parent().addClass('disabled');*/           
-        }
-        
+        // trigger click for upload file
+        $(".my-btn-upload").trigger( "click" );
     }).on('fileuploadprocessalways', function (e, data) {
         var index = data.index,
             file = data.files[index],
@@ -90,11 +78,6 @@ console.log('counterClient', counterClient)
             node
                 .append('<br>')
                 .append($('<span class="text-danger"/>').text(file.error));
-        }
-        if (index + 1 === data.files.length) {
-            data.context.find('button')
-                .text('Upload')
-                .prop('disabled', !!data.files.error);
         }
     }).on('fileuploadprogressall', function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -114,7 +97,6 @@ console.log('counterClient', counterClient)
                 if (file.url_delete) {
                     var linkDelete = $('<a>')
                         .text('delete')
-                        //.prop('href', '#')
                         .attr('data-delete-url', file.url_delete)
                         .attr('href', 'javascript:void(0)')
                         .attr('onclick', 'javascript:deleteFile(this)');
@@ -134,16 +116,7 @@ console.log('counterClient', counterClient)
                 $(data.context.children()[index]).parent().append(linkDelete);
             }
         });
-    }).on('fileuploadfail', function (e, data) {
-        $.each(data.files, function (index) {
-            var error = $('<span class="text-danger"/>').text('File upload failed.');
-            $(data.context.children()[index])
-                .append('<br>')
-                .append(error);
-        });
-    }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');
-
+    });
 
 });
 
@@ -155,13 +128,13 @@ console.log('counterClient', counterClient)
 function deleteFile(self) {
     event.preventDefault();
     var url_delete = self.getAttribute('data-delete-url');
-    console.log('url_delete', url_delete);
     if ( url_delete !== null) {
         $.get( url_delete, function( data ) {
             if (data == 'true') {
                 removeImage();
             } else {
-                alert("error in sever")
+                alert("error in sever");
+                removeImage();
             }
         });
     } else {
@@ -173,18 +146,14 @@ function deleteFile(self) {
         $('#avatarfile').removeAttr('disabled');
         $('#avatarfile').parent().removeClass('disabled');
     }
-
-    console.log('counterClient', counterClient)
     counterClient--;
-    console.log('counterClient', counterClient)
 }
 
 
-// send data 
-$('#enviar').click(function(){
+// submit Form
+$('#enviar').click(function(){ alert("click enviar")
     var url = context.url + '/plugin_jquery_file_upload/index';
     $.post( url, $('#form').serialize() ,function( data ) {
         console.log('data', data)
     });
-
 });
