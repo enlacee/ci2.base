@@ -107,7 +107,7 @@ class Plugin_jquery_file_upload extends MY_Controller {
 	}
 
 	protected function upload_image_perfil_delete()
-	{	
+	{
 		$varDelete = $this->input->get('delete');
 		if (!empty($varDelete)) {
 			$result = false;
@@ -115,11 +115,49 @@ class Plugin_jquery_file_upload extends MY_Controller {
 			$fileToDelete = $pathBase . $varDelete;
 			if (file_exists($fileToDelete)) {
 				$result = unlink($pathBase . $varDelete);
-			}			
+			}
 
 			echo json_encode($result);
 			exit;
 		}
+	}
+
+	/**
+	* Upload DNI
+	*/
+	public function upload_image_dni()
+	{
+		$result = array();
+		$sessionUser = $this->session->userdata('user');
+		$pathBase = $this->load->get_var('varGlobal')['tmpPath'];
+		$urlBase = $this->load->get_var('varGlobal')['tmpUrl'];
+		$config['upload_path']          = $pathBase;
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 2048; //kilobytes => 2MB
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('dnifile')) {
+			$result['files'][0]['error'] = strip_tags($this->upload->display_errors());
+		} else {
+			// get data session
+			if (!is_null($sessionUser) && is_array($sessionUser)) {
+				$result['files'][0] = $this->upload->data();
+				$result['files'][0]['url'] =  $urlBase . $this->upload->data('file_name');
+				$result['files'][0]['url_delete'] =  base_url() . 'plugin_jquery_file_upload/upload_image_perfil?delete=' . $this->upload->data('file_name');
+				
+				// save in session
+				$sessionUser['uploads']['dni'] = $result;
+				$this->session->set_userdata('user', $sessionUser);
+			} else {
+				$result = $data['files'][0]['error'] = 'Error session expired!.';
+			}
+		}
+		//print_r($sessionUser);
+		echo json_encode($result);
+		exit;
 	}
 
 	//Update
@@ -146,6 +184,9 @@ class Plugin_jquery_file_upload extends MY_Controller {
 		$this->layout->view('frontend/plugin_jquery_file_upload/base');
 	}
 
+	/**
+	* Demo upload base
+	*/
 	public function upload_base()
 	{
 		$result = array();
@@ -168,6 +209,9 @@ class Plugin_jquery_file_upload extends MY_Controller {
 		exit;
     }
 
+	/**
+	* Demo upload base plus
+	*/
 	public function base_plus()
 	{
 		// css
@@ -208,44 +252,5 @@ class Plugin_jquery_file_upload extends MY_Controller {
 		echo json_encode($result);
 		exit;
     }
-
-
-	/**
-	* Upload DNI
-	*/
-	public function upload_image_dni()
-	{
-		$result = array();
-		$pathBase = $this->load->get_var('varGlobal')['tmpPath'];
-		$urlBase = $this->load->get_var('varGlobal')['tmpUrl'];
-		$config['upload_path']          = $pathBase;
-		$config['allowed_types']        = 'gif|jpg|png';
-		$config['max_size']             = 2048; //kilobytes => 2MB
-		$config['max_width']            = 1024;
-		$config['max_height']           = 768;
-
-		$this->load->library('upload', $config);
-		var_dump($config);
-var_dump($this->upload->do_upload());
-var_dump($_FILES);EXIT;
-		if ( ! $this->upload->do_upload()) {
-			$result['files']['error'] = $this->upload->display_errors();
-		} else {
-			// get data session
-			$sessionUser = $this->session->userdata('user');
-			if (!is_null($sessionUser) && is_array($sessionUser)) {
-				$result['files'] = $this->upload->data();
-				$result['files']['url'] =  $urlBase . $this->upload->data('file_name');
-				// save in session
-				$sessionUser['uploads']['perfilDni'] = $result;
-				$this->session->set_userdata('user', $sessionUser);
-			} else {
-				$result = $data['files']['error'] = 'Error session expired!.';
-			}
-		}
-
-		echo json_encode($result);
-		exit;
-	}
 
 }
