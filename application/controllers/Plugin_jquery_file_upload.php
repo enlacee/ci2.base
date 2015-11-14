@@ -93,7 +93,6 @@ class Plugin_jquery_file_upload extends MY_Controller {
 				$result['files'][0] = $this->upload->data();
 				$result['files'][0]['url'] =  $urlBase . $this->upload->data('file_name');
 				$result['files'][0]['url_delete'] =  base_url() . 'plugin_jquery_file_upload/upload_image_perfil?delete=' . $this->upload->data('file_name');
-
 				// save in session
 				$sessionUser['uploads']['perfil'] = $result;
 				$this->session->set_userdata('user', $sessionUser);
@@ -147,7 +146,7 @@ class Plugin_jquery_file_upload extends MY_Controller {
 				$result['files'][0] = $this->upload->data();
 				$result['files'][0]['url'] =  $urlBase . $this->upload->data('file_name');
 				$result['files'][0]['url_delete'] =  base_url() . 'plugin_jquery_file_upload/upload_image_perfil?delete=' . $this->upload->data('file_name');
-				
+
 				// save in session
 				$sessionUser['uploads']['dni'] = $result;
 				$this->session->set_userdata('user', $sessionUser);

@@ -60,9 +60,8 @@
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>Add files...</span>
                             <!-- The file input field used as target for the file upload widget -->
-                            <input type="file" id="avatarfile" name="avatarfile">
+                            <input type="file" id="avatarfile" name="avatarfile" accept="image/png" maxFiles="1">
                         </span>
-                        <input type="text" id="avatarfileLength" name="avatarfileLength" value="1">
                         <br>
                         <br>
                         <!-- The global progress bar -->
@@ -114,8 +113,9 @@
         <i class="glyphicon glyphicon-plus"></i>
         <span>Add files...</span>
         <!-- The file input field used as target for the file upload widget -->
-        <input id="dnifile" type="file" name="dnifile" multiple>
+        <input id="dnifile" type="file" name="dnifile" accept="image/png" maxFiles='2'>
     </span>
+
     <br>
     <br>
     <!-- The global progress bar -->
